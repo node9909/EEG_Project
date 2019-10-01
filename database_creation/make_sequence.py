@@ -8,24 +8,31 @@ load_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Pyth
               '\\labeled_gr'
 sequence_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
                   '\\sequence'
-cross = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\cross.jpg'
+cross_path = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\cross.jpg'
 
+# load the numpy array containing the labels
 labels = np.load(load_folder+'\\'+'labels.npy')
 image_paths = []
+# get all labeled png files
 for root, dirs, files in os.walk(load_folder):
     for file in files:
         if file.endswith(".png"):
             image_paths.append(os.path.join(root, file))
 
-lit = list(zip(labels.ravel(), image_paths))
+# Shuffle the images along with their labels
+lit = list(zip(labels.ravel(order='F'), image_paths))
 random.shuffle(lit)
-
 labels, image_paths = zip(*lit)
+
+# save the new shuffled labels
 np.save(sequence_folder+'\\labels', labels)
+# the new random sequence of images
 sequence = ["" for x in range(len(image_paths)*2)]
+# fill the odd indices of sequence with the labeled image paths
 for j, i in enumerate(range(0, len(image_paths)*2, 2)):
     sequence[i] = image_paths[j]
 
+# Create the sequence of random labeled images with a between each pair of images for the resting period
 for ind, img in enumerate(sequence):
 
     if img:
@@ -34,4 +41,4 @@ for ind, img in enumerate(sequence):
         copyfile(img, dst)
         os.rename(dst, os.path.join(sequence_folder, str(ind)+'.png'))
     else:
-        copyfile(cross, os.path.join(sequence_folder, str(ind)+'.png'))
+        copyfile(cross_path, os.path.join(sequence_folder, str(ind)+'.png'))
