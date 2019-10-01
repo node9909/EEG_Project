@@ -44,5 +44,6 @@ for ind, img in enumerate(sequence):
     else:
         copyfile(cross_path, os.path.join(sequence_folder, str(ind)+'.png'))
 
+# create the list of object names and save it as ndarray
 object_name = [''.join(filter(str.isalpha, on[:len(on)-3])) for on in object_name]
 np.save(sequence_folder+'\\object_classes', np.asarray(object_name))
