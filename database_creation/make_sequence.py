@@ -23,7 +23,7 @@ for root, dirs, files in os.walk(load_folder):
 lit = list(zip(labels.ravel(order='F'), image_paths))
 random.shuffle(lit)
 labels, image_paths = zip(*lit)
-
+object_name = []
 # save the new shuffled labels
 np.save(sequence_folder+'\\labels', labels)
 # the new random sequence of images
@@ -37,8 +37,12 @@ for ind, img in enumerate(sequence):
 
     if img:
         file_name = os.path.basename(img)
+        object_name.append(file_name)
         dst = os.path.join(sequence_folder, file_name)
         copyfile(img, dst)
         os.rename(dst, os.path.join(sequence_folder, str(ind)+'.png'))
     else:
         copyfile(cross_path, os.path.join(sequence_folder, str(ind)+'.png'))
+
+object_name = [''.join(filter(str.isalpha, on[:len(on)-3])) for on in object_name]
+np.save(sequence_folder+'\\object_classes', np.asarray(object_name))
