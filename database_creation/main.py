@@ -11,9 +11,9 @@ def get_name(folder_path):
     return parts[len(parts)-2]
 
 
-load_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\true'
+load_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\true'
 # load_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\test'
-save_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\labeled_gr'
+save_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\labeled_gr'
 
 # i.e. 'airplane', 'airplane_test', 'airplane_train
 object_folders = [x[0] for x in os.walk(load_folder)]
@@ -21,7 +21,7 @@ object_folders = [x[0] for x in os.walk(load_folder)]
 # test folders occur every 3 folders
 test_folders = [object_folders[i] for i in range(2, len(object_folders), 3)]
 
-# stores the answer to the question: "Is the label corret?"
+# stores the answer to the question: "Is the label correct?"
 correct = np.zeros(shape=(20, len(test_folders)), dtype=np.bool)
 
 # object names: 'airplane', 'bottle', ... 'xbox'
@@ -30,7 +30,6 @@ labels = [get_name(path) for path in test_folders]
 # transform names like tv_stand to tv stand
 labels = [l.replace('_', ' ') for l in labels]
 
-# greek labels
 labels_gr = ['Αεροπλάνο', 'Μπανιέρα', 'Κρεβάτι', 'Παγκάκι', 'Βιβλιοθήκη', 'Μπουκάλι', 'Μπολ', 'Αυτοκίνητο', 'Καρέκλα',
              'Κόνος', 'Κούπα', 'Κουρτίνα', 'Γραφείο', 'Πόρτα', 'Συρταριέρα', 'Βάζο λουλουδιών', 'Κιθάρα',
              'Πληκτρολόγιο', 'Λάμπα', 'Λάπτοπ', 'Οθόνη', 'Κομοδίνο', 'Άνθρωπος', 'Πιάνο', 'Φυτό', 'Ράδιο', 'Νεροχύτης',

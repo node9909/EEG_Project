@@ -3,12 +3,13 @@ import random
 import numpy as np
 from shutil import copyfile
 
+cross_type = 1
 
-load_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
+load_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
               '\\labeled_gr'
-sequence_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
+sequence_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
                   '\\sequence'
-cross_path = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\cross.jpg'
+cross_path = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\cross'+str(cross_type)+'.png'
 
 # load the numpy array containing the labels
 labels = np.load(load_folder+'\\'+'labels.npy')
