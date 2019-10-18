@@ -20,8 +20,10 @@
         max-width: 1000px;
         left: 50%;
         top: 10%;
+        /*border: 2px solid black;*/
         transform: translateX(-50%, -50%);
         margin: auto;
+        overflow: hidden;
     }
 
     /* Hide the images by default */
@@ -31,6 +33,7 @@
 
     .images {
         max-width: 500px;
+        max-height: auto;
         left: 50%;
         position: relative;
         transform: translate(-50%);
@@ -44,12 +47,14 @@
     }
 
     .block {
-        width: 100%;
-        display: none;
+        /*width: 100%;*/
         background-color: white;
-        position: relative;
-        padding-top: 70px;
-        transform: translate(0%, -160%);
+        /*border: 2px solid black;*/
+        display: none;        
+        position: absolute;
+        height: 120px;
+        width: 800px;
+        bottom: -40%;
     }
 
     @-webkit-keyframes fade {
@@ -106,10 +111,10 @@
             <img src="./image/8.png" class="images">
         </div>
         <!-- Blocking the label for x secs -->
-        <div class="block" id="blocking"></div>
+        <div style="position: relative; display: table;"><div class="block" id="blocking"></div></div>
 
     </div>
-
+    
     <!-- Slideshow script -->
     <script>
         var slideIndex = 0; //current slide index
