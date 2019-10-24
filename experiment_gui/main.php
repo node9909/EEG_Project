@@ -70,6 +70,7 @@
 
 <body onmousedown="addAnswer(event)" oncontextmenu="return false;">
     <!-- <div id="test"></div> -->
+    <div id="kwlos"></div>
     <div class="slideshow-container" onmousedown="return false">
         <div class="mySlides fade">
             <img src="./image/-.png" class="images">
@@ -119,7 +120,9 @@
     <script>
         var slideIndex = 0; //current slide index
         var subname = '<?php echo $subname; ?>'
-        var canAnswer = false; //variable that can block mouse answers when needed
+        var canAnswer = false;
+        var answers = new Array();
+         //variable that can block mouse answers when needed
         showSlides();
 
         function showSlides() {
@@ -128,7 +131,15 @@
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
+            if (Math.floor(slideIndex/2) != answers.length) { 
+                answers.push(1);
+                times.push(0);
+                ans_times.push(0);
+            }
+            document.getElementById("kwlos").innerHTML = (answers.length).toString();
             slideIndex++;
+            
+
             if (slideIndex > slides.length) {
                 download(subname + '.txt'); // when slideshow ends save file
                 document.location.href = "./end.html" // and change url
@@ -140,6 +151,7 @@
                 setTimeout(function() {
                     document.getElementById("blocking").style.display = "none";
                     canAnswer = true;
+                    label_time = Date.now();
                 }, 5000);
                 setTimeout(showSlides, 10000);
             } else {
@@ -153,15 +165,15 @@
 
 
     <script>
-        var answers = new Array(); 
         var times = new Array();
+        var ans_times = new Array();
         var startTime = Date.now();
         // Appends new answer to the answers variable if canAnswer flag is true
         // Also calculates the milliseconds passed from the beginning to the mouse click
         function addAnswer(event) {
             if (canAnswer) {
                 answers.push(event.button);
-                //document.getElementById("test").innerHTML = answers;
+                ans_times.push(Date.now() - label_time)
                 times.push(Date.now()-startTime);
             } 
             canAnswer = false;
@@ -170,7 +182,7 @@
         // Downloads the final file
         function download(filename) {
             var pom = document.createElement('a');
-            pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(answers.toString() + '\n' + times.toString()));
+            pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(answers.toString() + '\n' + times.toString() + '\n' + ans_times.toString()));
             pom.setAttribute('download', filename);
 
             if (document.createEvent) {
