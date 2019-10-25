@@ -70,59 +70,32 @@
 
 <body onmousedown="addAnswer(event)" oncontextmenu="return false;">
     <!-- <div id="test"></div> -->
-    <div id="kwlos"></div>
-    <div class="slideshow-container" onmousedown="return false">
+    <div class="slideshow-container" id="sl-cnt" onmousedown="return false">
         <div class="mySlides fade">
             <img src="./image/-.png" class="images">
         </div>
-
-        <div class="mySlides fade">
-            <img src="./image/0.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/1.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/2.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/3.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/4.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/5.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/6.png" class="images">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="./image/7.png" class="images">
-        </div>
-        
-        <div class="mySlides fade">
-            <img src="./image/8.png" class="images">
-        </div>
-        <!-- Blocking the label for x secs -->
-        <div style="position: relative; display: table;"><div class="block" id="blocking"></div></div>
-
     </div>
     
     <!-- Slideshow script -->
+    <script type="text/javascript">
+        //adds 78 extra divs that will contain the images + the rectable that will block the label
+        function createImages() {
+            num_ims = 40;
+            slide_div = document.getElementById("sl-cnt");
+            for (i = 0; i<num_ims*2-1; i++) {
+                slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + i.toString() + ".png' class='images'></div>"
+            }
+            slide_div.innerHTML = slide_div.innerHTML + '<div style="position: relative; display: table;"><div class="block" id="blocking"></div></div>'
+        }
+    </script>
+
     <script>
         var slideIndex = 0; //current slide index
         var subname = '<?php echo $subname; ?>'
         var canAnswer = false;
         var answers = new Array();
          //variable that can block mouse answers when needed
+        createImages();
         showSlides();
 
         function showSlides() {
@@ -136,9 +109,9 @@
                 times.push(0);
                 ans_times.push(0);
             }
-            document.getElementById("kwlos").innerHTML = (answers.length).toString();
-            slideIndex++;
-            
+
+            /*document.getElementById("test").innerHTML = (answers.length).toString();
+            slideIndex++;*/
 
             if (slideIndex > slides.length) {
                 download(subname + '.txt'); // when slideshow ends save file
@@ -169,7 +142,8 @@
         var ans_times = new Array();
         var startTime = Date.now();
         // Appends new answer to the answers variable if canAnswer flag is true
-        // Also calculates the milliseconds passed from the beginning to the mouse click
+        // calculates the milliseconds passed from the beginning to the mouse click
+        // also calculates the milliseconds that passed after the reveal of the label to the mouse click
         function addAnswer(event) {
             if (canAnswer) {
                 answers.push(event.button);
