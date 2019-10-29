@@ -3,7 +3,7 @@ import random
 import numpy as np
 from shutil import copyfile
 
-cross_type = 1
+cross_type = 3
 
 load_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
               '\\labeled_gr'
