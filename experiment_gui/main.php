@@ -5,68 +5,7 @@
 
 <html>
 
-<style type="text/css">
-    * {box-sizing:border-box}
-    
-    /*Sudo class for disabling highlighting*/
-    ::selection {
-        background-color: transparent;
-        color: #000;
-    }
-
-    .slideshow-container {
-        width: 100%;
-        height: auto;
-        max-width: 1000px;
-        left: 50%;
-        top: 10%;
-        /*border: 2px solid black;*/
-        transform: translateX(-50%, -50%);
-        margin: auto;
-        overflow: hidden;
-    }
-
-    /* Hide the images by default */
-    .mySlides::selection{
-        display: none;
-    }
-
-    .images {
-        max-width: 500px;
-        max-height: auto;
-        left: 50%;
-        position: relative;
-        transform: translate(-50%);
-    }
-    /* Fading animation */
-    .fade {
-        -webkit-animation-name: fade;
-        -webkit-animation-duration: 1.5s;
-        animation-name: fade;
-        animation-duration: 1.5s;
-    }
-
-    .block {
-        /*width: 100%;*/
-        background-color: white;
-        /*border: 2px solid black;*/
-        display: none;        
-        position: absolute;
-        height: 120px;
-        width: 800px;
-        bottom: -40%;
-    }
-
-    @-webkit-keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
-    }
-
-    @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
-    }
-</style>
+<head><link rel="stylesheet" type="text/css" href="main_css.css"></head>
 
 <body onmousedown="addAnswer(event)" oncontextmenu="return false;">
     <!-- <div id="test"></div> -->
