@@ -49,8 +49,8 @@
                 ans_times.push(0);
             }
 
-            /*document.getElementById("test").innerHTML = (answers.length).toString();
-            slideIndex++;*/
+            /*document.getElementById("test").innerHTML = (answers.length).toString();*/
+            slideIndex++;
 
             if (slideIndex > slides.length) {
                 download(subname + '.txt'); // when slideshow ends save file
