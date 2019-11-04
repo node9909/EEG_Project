@@ -27,6 +27,7 @@ empty_folder(sequence_folder)
 # load the numpy array containing the labels
 labels = np.load(load_folder+'\\'+'labels.npy')
 image_paths = []
+views = []
 # get all labeled png files
 for root, dirs, files in os.walk(load_folder):
     for file in files:
@@ -38,8 +39,13 @@ lit = list(zip(labels.ravel(order='F'), image_paths))
 random.shuffle(lit)
 labels, image_paths = zip(*lit)
 object_name = []
-# save the new shuffled labels
+# save the new shuffled labels and views
+for i in range(0, len(image_paths)):
+    view_int = image_paths[i][len(image_paths[i])-6:len(image_paths[i])-4] # get the view from the filename
+    views.append(int(view_int))
 np.save(sequence_folder+'\\labels', labels)
+np.save(sequence_folder+'\\views', views)
+
 # the new random sequence of images
 sequence = ["" for x in range(len(image_paths)*2)]
 # fill the odd indices of sequence with the labeled image paths
