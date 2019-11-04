@@ -5,7 +5,7 @@ import numpy as np
 
 
 def get_name(folder_path):
-    d, pnf = os.path.splitdrive(folder_path)
+    # d, pnf = os.path.splitdrive(folder_path)
     parts = os.path.normpath(folder_path).split(os.path.sep)
     return parts[len(parts)-2]
 
