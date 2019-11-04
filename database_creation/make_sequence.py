@@ -3,9 +3,26 @@ import random
 import numpy as np
 from shutil import copyfile
 
+
+# deletes every file in the given folder
+def empty_folder(folder):
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(e)
+
+
+cross_type = '3'
+
 load_folder = '.\\labeled_gr'
-sequence_folder =  '.\\sequence'
-cross_path = '.\\cross.png'
+sequence_folder = '.\\sequence'
+cross_path = '.\\cross' + cross_type + '.png'
+
+# delete previous sequence
+empty_folder(sequence_folder)
 
 # load the numpy array containing the labels
 labels = np.load(load_folder+'\\'+'labels.npy')
@@ -44,3 +61,6 @@ for ind, img in enumerate(sequence):
 # create the list of object names and save it as ndarray
 object_name = [''.join(filter(str.isalpha, on[:len(on)-3])) for on in object_name]
 np.save(sequence_folder+'\\object_classes', np.asarray(object_name))
+
+# add the first cross
+copyfile(cross_path, os.path.join(sequence_folder, '-.png'))
