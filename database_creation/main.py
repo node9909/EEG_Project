@@ -10,9 +10,9 @@ def get_name(folder_path):
     return parts[len(parts)-2]
 
 
-load_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\apostolis'
+load_folder = '.\\true'
 # load_folder = 'C:\\Users\\User01\\Desktop\\Αποστόλης\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\test'
-save_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures\\labeled_gr'
+save_folder = '.\\labeled_gr'
 
 object_folders = [x for x, _, _ in os.walk(load_folder)]
 

@@ -3,13 +3,9 @@ import random
 import numpy as np
 from shutil import copyfile
 
-cross_type = 3
-
-load_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
-              '\\labeled_gr'
-sequence_folder = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\Picture_labeling\\pictures' \
-                  '\\sequence'
-cross_path = 'C:\\Users\\User01\\Desktop\\Apostolis\\Programming\\Python\\Athena\\cross'+str(cross_type)+'.png'
+load_folder = '.\\labeled_gr'
+sequence_folder =  '.\\sequence'
+cross_path = '.\\cross.png'
 
 # load the numpy array containing the labels
 labels = np.load(load_folder+'\\'+'labels.npy')
@@ -33,7 +29,7 @@ sequence = ["" for x in range(len(image_paths)*2)]
 for j, i in enumerate(range(0, len(image_paths)*2, 2)):
     sequence[i] = image_paths[j]
 
-# Create the sequence of random labeled images with a between each pair of images for the resting period
+# Create the sequence of random labeled images with a cross between each pair of images for the resting period
 for ind, img in enumerate(sequence):
 
     if img:
