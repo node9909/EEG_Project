@@ -10,9 +10,6 @@
 <body onmousedown="addAnswer(event)" oncontextmenu="return false;">
     <!-- <div id="test"></div> -->
     <div class="slideshow-container" id="sl-cnt" onmousedown="return false">
-        <div class="mySlides fade">
-            <img src="./image/-.png" class="images">
-        </div>
     </div>
     
     <!-- Slideshow script -->
@@ -22,7 +19,11 @@
             num_ims = 40;
             slide_div = document.getElementById("sl-cnt");
             for (i = 0; i<num_ims*2-1; i++) {
-                slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + i.toString() + ".png' class='images'></div>"
+                if (i % 2 == 1) {
+                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + (Math.floor(i/2)).toString() + ".png' class='images'></div>"
+                } else {
+                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/-.png' class='images'></div>"
+                }
             }
             slide_div.innerHTML = slide_div.innerHTML + '<div style="position: relative; display: table;"><div class="block" id="blocking"></div></div>'
         }
@@ -55,7 +56,7 @@
             if (slideIndex > slides.length) {
                 download(subname + '.txt'); // when slideshow ends save file
                 document.location.href = "./end.html" // and change url
-            } 
+            }
             slides[slideIndex-1].style.display = "block";
             if (slideIndex % 2 == 0 ){ //Slides with odd index are baseline crosses
                 
