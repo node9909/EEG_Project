@@ -10,6 +10,9 @@
 <body onmousedown="addAnswer(event)" oncontextmenu="return false;">
     <!-- <div id="test"></div> -->
     <div class="slideshow-container" id="sl-cnt" onmousedown="return false">
+       <!-- <div class="mySlides fade">
+            <img src="./image/-.png" class="images">
+        </div> -->
     </div>
     
     <!-- Slideshow script -->
@@ -20,9 +23,9 @@
             slide_div = document.getElementById("sl-cnt");
             for (i = 0; i<num_ims*2-1; i++) {
                 if (i % 2 == 1) {
-                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + (Math.floor(i/2)).toString() + ".png' class='images'></div>"
+                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + subname + '/' + (Math.floor(i/2)).toString() + ".png' class='images'></div>"
                 } else {
-                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/-.png' class='images'></div>"
+                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + subname + '/' + "-.png' class='images'></div>"
                 }
             }
             slide_div.innerHTML = slide_div.innerHTML + '<div style="position: relative; display: table;"><div class="block" id="blocking"></div></div>'
@@ -65,12 +68,12 @@
                     document.getElementById("blocking").style.display = "none";
                     canAnswer = true;
                     label_time = Date.now();
-                }, 5000);
-                setTimeout(showSlides, 10000);
+                }, 3000);
+                setTimeout(showSlides, 6000);
             } else {
                 canAnswer = false;
                 document.getElementById("blocking").style.display = "none";
-                setTimeout(showSlides, 5000);
+                setTimeout(showSlides, 3000);
             }
         }
 
