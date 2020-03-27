@@ -25,6 +25,7 @@
 	<div class="form-container">
 		<form action="./main.php" method="post">
 			<input type="text" name="subname" style="text-align: center"></br>
+			<input type="text" name="subcode" style="text-align: center"></br>
 			<input type="submit" value="Start" class="submit-but">
 		</form>
 	</div>
