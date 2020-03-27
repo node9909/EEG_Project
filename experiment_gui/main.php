@@ -1,6 +1,10 @@
 <!-- Receive the subject number from the previous page -->
 <?php
-    $subname = $_POST["subname"];
+	if ( $_POST['subname'] || $_POST['subcode'] ) {
+		$subname = $_POST["subname"];
+		$subcode = $_POST["subcode"];
+	}
+    
 ?>
 
 <html>
@@ -17,7 +21,7 @@
     
     <!-- Slideshow script -->
     <script type="text/javascript">
-        //adds 78 extra divs that will contain the images + the rectable that will block the label
+        //adds 78 extra divs that will contain the images + the rectangle that will block the label
         function createImages() {
             num_ims = 40;
             slide_div = document.getElementById("sl-cnt");
@@ -35,6 +39,7 @@
     <script>
         var slideIndex = 0; //current slide index
         var subname = '<?php echo $subname; ?>'
+		var subcode = '<?php echo $subcode; ?>'
         var canAnswer = false;
         var answers = new Array();
          //variable that can block mouse answers when needed
@@ -57,7 +62,7 @@
             slideIndex++;
 
             if (slideIndex > slides.length) {
-                download(subname + '.txt'); // when slideshow ends save file
+                download(subcode + '.txt'); // when slideshow ends save file
                 document.location.href = "./end.html" // and change url
             }
             slides[slideIndex-1].style.display = "block";
@@ -68,12 +73,12 @@
                     document.getElementById("blocking").style.display = "none";
                     canAnswer = true;
                     label_time = Date.now();
-                }, 3000);
-                setTimeout(showSlides, 6000);
+                }, 3500);
+                setTimeout(showSlides, 6500);
             } else {
                 canAnswer = false;
                 document.getElementById("blocking").style.display = "none";
-                setTimeout(showSlides, 3000);
+                setTimeout(showSlides, 3500);
             }
         }
 
