@@ -4,5 +4,5 @@ The stimuli will be images of 2d objects (airplanes, chair, etc) and will either
 
 A sneak peek of the images:
 
-![alt text](https://github.com/apospraf/EEG_Project/blob/master/test/airplane_0627_012.png.png)
-![alt text](https://github.com/apospraf/EEG_Project/blob/master/test/bowl_000000218_009.png.png)
+![alt text](https://github.com/apospraf/EEG_Project/blob/master/Sample/airplane_0627_012.png.png)
+![alt text](https://github.com/apospraf/EEG_Project/blob/master/Sample/bowl_000000218_009.png.png)
