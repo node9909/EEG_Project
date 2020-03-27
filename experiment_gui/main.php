@@ -1,6 +1,10 @@
 <!-- Receive the subject number from the previous page -->
 <?php
-    $subname = $_POST["subname"];
+	if ( $_POST['subname'] || $_POST['subcode'] ) {
+		$subname = $_POST["subname"];
+		$subcode = $_POST["subcode"];
+	}
+    
 ?>
 
 <html>
@@ -10,19 +14,23 @@
 <body onmousedown="addAnswer(event)" oncontextmenu="return false;">
     <!-- <div id="test"></div> -->
     <div class="slideshow-container" id="sl-cnt" onmousedown="return false">
-        <div class="mySlides fade">
+       <!-- <div class="mySlides fade">
             <img src="./image/-.png" class="images">
-        </div>
+        </div> -->
     </div>
     
     <!-- Slideshow script -->
     <script type="text/javascript">
-        //adds 78 extra divs that will contain the images + the rectable that will block the label
+        //adds 78 extra divs that will contain the images + the rectangle that will block the label
         function createImages() {
             num_ims = 40;
             slide_div = document.getElementById("sl-cnt");
             for (i = 0; i<num_ims*2-1; i++) {
-                slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + i.toString() + ".png' class='images'></div>"
+                if (i % 2 == 1) {
+                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + subname + '/' + (Math.floor(i/2)).toString() + ".png' class='images'></div>"
+                } else {
+                    slide_div.innerHTML = slide_div.innerHTML + "<div class='mySlides fade'><img src='./image/" + subname + '/' + "-.png' class='images'></div>"
+                }
             }
             slide_div.innerHTML = slide_div.innerHTML + '<div style="position: relative; display: table;"><div class="block" id="blocking"></div></div>'
         }
@@ -31,6 +39,7 @@
     <script>
         var slideIndex = 0; //current slide index
         var subname = '<?php echo $subname; ?>'
+		var subcode = '<?php echo $subcode; ?>'
         var canAnswer = false;
         var answers = new Array();
          //variable that can block mouse answers when needed
@@ -53,9 +62,9 @@
             slideIndex++;
 
             if (slideIndex > slides.length) {
-                download(subname + '.txt'); // when slideshow ends save file
+                download(subcode + '.txt'); // when slideshow ends save file
                 document.location.href = "./end.html" // and change url
-            } 
+            }
             slides[slideIndex-1].style.display = "block";
             if (slideIndex % 2 == 0 ){ //Slides with odd index are baseline crosses
                 
@@ -64,12 +73,12 @@
                     document.getElementById("blocking").style.display = "none";
                     canAnswer = true;
                     label_time = Date.now();
-                }, 5000);
-                setTimeout(showSlides, 10000);
+                }, 3500);
+                setTimeout(showSlides, 6500);
             } else {
                 canAnswer = false;
                 document.getElementById("blocking").style.display = "none";
-                setTimeout(showSlides, 5000);
+                setTimeout(showSlides, 3500);
             }
         }
 
