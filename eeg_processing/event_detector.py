@@ -24,6 +24,7 @@ for file in export_files:
 
     f = open(file)
     text = f.readlines()
+    f.close()
     time_zero = 0
     for ind, line in enumerate(text):
         # Search in text for this particular line which marks the start of the web application
@@ -53,6 +54,7 @@ for file in export_files:
 
         # Put answers and labels in one array
         events = np.column_stack([labels, answers])
+        events = np.insert(events, 1, 0, axis=1).astype(np.uint)
+        events[:, 0] = events[:, 0] * 128 / 1000
         # Save times in a npy file
         np.save(os.path.join(save_fol, sub_name, 'events'), events)
-    f.close()
